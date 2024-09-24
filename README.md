@@ -10,7 +10,7 @@ This code is released under the terms of this [LICENSE](LICENSE).  The version o
 
 Python version 3.8+ is required, along with the following third-party Python packages: numpy
 
-The associated (Python-based) git repository 'PREFIRE_tools' is also required for the proper operation of this package.
+The associated (Python-based) git repository ['PREFIRE_tools'](https://github.com/UW-PREFIRE/PREFIRE_tools) is also required for the proper operation of this package.
 
 ## Python Environment Setup
 
@@ -84,6 +84,6 @@ Edit `my-run_m0.sh` as needed (e.g., change input file names)
 
 `./my-run_m0.sh`
 
-### The output file(s) will be in subdirectories of `test/outputs/` (e.g., `m0/`)
+The output file(s) will be in subdirectories of `test/outputs/` (e.g., `m0/`)
 
 ## _The creation of this code was supported by NASA, as part of the PREFIRE (Polar Radiant Energy in the Far-InfraRed Experiment) CubeSat mission._
