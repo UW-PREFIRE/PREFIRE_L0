@@ -1,0 +1,98 @@
+###===== Detritus related to editors and OS =====
+
+# Linux/UNIX: 
+.*
+!.gitignore
+
+# OS X:
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# MS Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# emacs detritus:
+*~
+\#*\#
+.\#*
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.org-id-locations
+*_archive
+
+# vim detritus:
+*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# zile detritus:
+*.ZILESAVE
+
+###===== General build-related detritus =====
+
+# Compiled object files:
+*.slo
+*.lo
+*.o
+*.ko
+*.mod
+*.MOD
+
+# Compiled dynamic libraries:
+*.so
+*.dylib
+*.so.*
+*.dll
+
+# Compiled static libraries:
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables:
+*.exe
+*.out
+*.app
+
+# Python-related detritus:
+*.py[cod]
+__pycache__
+
+###===== This application's detritus =====
+
+dist/ancillary/*
+prdgit_version*.txt
+dist/app_matlab_run
+dist/mccExcludedFiles.log
+dist/requiredMCRProducts.txt
+dist/run_app_matlab_run.sh
+dist/readme.txt
+
+PREFIRE_PRD_GEN/
+PREFIRE_PRD_GEN
+PREFIRE_tools/
+PREFIRE_tools
+
+inputs/
+inputs
+outputs/
+outputs
+
+*.zip
+
+# Things that would otherwise be excluded:
+!dist/ancillary/*.json
