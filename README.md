@@ -14,7 +14,9 @@ The associated (Python-based) git repository 'PREFIRE_tools' is also required fo
 
 ## Python Environment Setup
 
-It is recommended to install the above Python packages in a dedicated conda environment (or something similar). For example, using conda (and specifying Python 3.10.x from the conda-forge channel):
+It is recommended to install the above Python packages in a dedicated conda environment (or something similar).  The packages used (and their versions) can be found in [conda_env.list](conda_env.list).
+
+For example, using conda (and specifying Python 3.10.x from the conda-forge channel):
 
 conda create --name for_PREFIRE_L0 -c conda-forge python=3.10;
 conda activate for_PREFIRE_L0;
