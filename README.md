@@ -18,9 +18,11 @@ It is recommended to install the above Python packages in a dedicated conda envi
 
 For example, using conda (and specifying Python 3.10.x from the conda-forge channel):
 
+```
 conda create --name for_PREFIRE_L0 -c conda-forge python=3.10;
 conda activate for_PREFIRE_L0;
 conda install -c conda-forge numpy;
+```
 
 The location of 'PREFIRE_tools' depends on the value of the user's PYTHONPATH and/or sys.path -- for example, one could simply add each of those git repositories' local root Python source code directory to PYTHONPATH. Operationally, however, this package uses symbolic links to those git repositories' local root Python source code directories (or full copies of the same) in the source/ directory.
 
@@ -54,7 +56,7 @@ PROC_MODE  :  the processing mode (operationally-valid values: 0, 1, 2; see belo
 
 ## Obtain and unpack any ancillary data and/or test data
 
-### None (for this version)
+None (for this version).
 
 ## Prepare the output directory:
 
