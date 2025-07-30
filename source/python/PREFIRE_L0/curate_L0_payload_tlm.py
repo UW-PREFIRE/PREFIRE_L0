@@ -137,6 +137,7 @@ def curate_L0_payload_tlm(leap_s_info, dict_cfg=None, debug=False):
     ctime_s_unique = np.compress(dcheck_bool, raw_ctime_sorted, axis=0)
 #%    ctime_misma_unique = np.compress(dcheck_bool, raw_ctime_misma_sorted,
 #%                                     axis=0)
+
     if debug:
         for i in range(len(ctime_s_unique)-1):
             if (ctime_s_unique[i+1]-ctime_s_unique[i] > TIRSp.ROIC_tau*1.01 or
@@ -165,19 +166,18 @@ def curate_L0_payload_tlm(leap_s_info, dict_cfg=None, debug=False):
     ib = np.searchsorted(ctime_s_unique, tgt_ctime_s_bounds[0], side="left")
     ie = np.searchsorted(ctime_s_unique, tgt_ctime_s_bounds[1],
                          side="left")  # NumPy indexing
-    dcheck_bool_subset = dcheck_bool.copy()
-    dcheck_bool_subset[:ib] = False  # Not part of desired subset
-    dcheck_bool_subset[ie:] = False  #
 
     ctime_s = ctime_s_unique[ib:ie]
     scidat_A_raw = np.array(list(itertools.chain.from_iterable(res["scidat_A"]
                                            for res in res_dl)), dtype="object")
     scidat_A_sorted = scidat_A_raw[sorted_inds_full]
-    scidat_A = np.compress(dcheck_bool_subset, scidat_A_sorted, axis=0)
+    scidat_A_unique = np.compress(dcheck_bool, scidat_A_sorted, axis=0)
+    scidat_A = scidat_A_unique[ib:ie]
     scidat_B_raw = np.array(list(itertools.chain.from_iterable(res["scidat_B"]
                                            for res in res_dl)), dtype="object")
     scidat_B_sorted = scidat_B_raw[sorted_inds_full]
-    scidat_B = np.compress(dcheck_bool_subset, scidat_B_sorted, axis=0)
+    scidat_B_unique = np.compress(dcheck_bool, scidat_B_sorted, axis=0)
+    scidat_B = scidat_B_unique[ib:ie]
 
     # Construct output filepath:
     input_fn = os.path.basename(input_fpaths[0])
@@ -185,6 +185,9 @@ def curate_L0_payload_tlm(leap_s_info, dict_cfg=None, debug=False):
     outp_fn_body = '_'.join(tmp_fn_parts[0:4])
     ctime_coverage = np.array([ctime_s[0], ctime_s[-1]])  # [s]
     UTC_DT, _ = ctime_to_UTC_DT(ctime_coverage, 's', leap_s_info)
+    if debug:
+        print("ctime coverage:", ctime_coverage[0], ctime_coverage[1])
+        print("UTC coverage:", UTC_DT[0], UTC_DT[1])
     now_UTC_DT = datetime.datetime.now(datetime.timezone.utc)
     now_UTC_strrep = now_UTC_DT.strftime("%Y-%m-%dT%H:%M:%S.%f")
     outp_fn_suffix = \

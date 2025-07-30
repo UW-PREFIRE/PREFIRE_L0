@@ -1,0 +1,71 @@
+{
+"_JSON_COMMENTS_": {
+  "purpose": {"to_describe": "the metadata and form of a NetCDF-format file"},
+  
+  "abbrev_widget_len": {
+       "units": "cubits",
+       "long_name": "abbreviated widget length",
+       "description": "an arbitrary example of a data variable",
+       "C_dimensions": ["atrack", "xtrack"],
+       "F_dimensions": ["xtrack", "atrack"],
+       "np_dtype": "float32", "fill_value": -9.999e3,
+       "compression": [4, true] },
+
+  "C_dimensions_are": { "for": "Python, C, C++, etc." },
+  "F_dimensions_are": { "for": "Fortran, MatLab, IDL, etc." },
+  "can_have_either": { "or_both_types": "of dimension definition" },
+  "for_an_unlimited_dimension": { "add_a_prefix_eg": "!U!time" },
+
+  "Global_Attributes": { "group": "can be empty or omitted" },
+  "xxxxx_Group_Attributes": { "group": "can omit/empty, xxxxx is group name" },
+  "eg_value_known_globalgroup_att": { "value": 3.14159 },
+  "eg_value_pending_globalgroup_att": { "value": "!to_be_set!" } 
+},
+
+
+"Global_Attributes": {
+    "Format": {"value": "netCDF-4"},
+    "summary": {"value": "This file is a PREFIRE Level-0 proto-payload telemetry data file, and will not be archived at a DAAC."},
+    "full_versionID": {"value": "!to_be_set!"},
+    "archival_versionID": {"value": " "},
+    "granule_type": {"value": "!to_be_set!"},
+    "granule_ID": {"value": "!to_be_set!"},
+    "provenance": {"value": "!to_be_set!"},
+    "file_name": {"value": "!to_be_set!"},
+    "input_product_files": {"value": "!to_be_set!"},
+    "processing_algorithmID": {"value": "!to_be_set!"},
+    "processing_level": {"value": "0"},
+    "UTC_of_file_creation": {"value": "!to_be_set!"},
+    "spacecraft_ID": {"value": "!to_be_set!"},
+    "sensor_ID": {"value": "!to_be_set!"},
+    "ctime_coverage_start_s": {"value": "!to_be_set!"},
+    "ctime_coverage_end_s": {"value": "!to_be_set!"},
+    "UTC_coverage_start": {"value": "!to_be_set!"},
+    "UTC_coverage_end": {"value": "!to_be_set!"},
+    "additional_file_description": {"value": " "},
+    "netCDF_lib_version": {"value": "!to_be_set!"},
+    "orbit_sim_version": {"value": "!to_be_set!"},
+    "SRF_NEdR_version": {"value": "!to_be_set!"},
+    "is_this_a_final_product_file": {"value": "no"}
+},
+
+
+"TIRS_L0_Data": {
+    "ctime": {
+             "units": "seconds since 2000-01-01T00:00:00Z",
+             "long_name": "continuous_time at the science packet look end",
+             "description": "similar to TAI, referenced to the epoch 2000-01-01T00:00:00 UTC, and valid at the end of the look (i.e., end of TIRS image integration)",
+             "C_dimensions": ["atrack_scipkt"],
+             "F_dimensions": ["atrack_scipkt"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "dummy_var_for_dims": {
+             "long_name": "dummy variable for dimensions",
+             "description": "provides needed dimensions to output file",
+             "C_dimensions": ["allspectral", "xtrack"],
+             "F_dimensions": ["xtrack", "allspectral"],
+             "np_dtype": "int8", "fill_value": -99,
+             "compression": [4, true] }
+}
+}

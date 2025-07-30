@@ -96,3 +96,5 @@ outputs
 
 # Things that would otherwise be excluded:
 !dist/ancillary/*.json
+!dist/ancillary/TLEplus_*.nc
+!dist/ancillary/de421.bsp

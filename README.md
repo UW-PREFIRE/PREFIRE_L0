@@ -8,7 +8,7 @@ This code is released under the terms of this [LICENSE](LICENSE).  The version o
 
 ## Requirements
 
-Python version 3.8+ is required, along with the following third-party Python packages: numpy
+Python version 3.8+ is required, along with the following third-party Python packages: numpy, netcdf4, pandas, skyfield
 
 The associated (Python-based) git repository ['PREFIRE_tools'](https://github.com/UW-PREFIRE/PREFIRE_tools) is also required for the proper operation of this package.
 
@@ -21,7 +21,7 @@ For example, using conda (and specifying Python 3.10.x from the conda-forge chan
 ```
 conda create --name for_PREFIRE_L0 -c conda-forge python=3.10;
 conda activate for_PREFIRE_L0;
-conda install -c conda-forge numpy;
+conda install -c conda-forge numpy netcdf4 pandas skyfield;
 ```
 
 The location of 'PREFIRE_tools' depends on the value of the user's PYTHONPATH and/or sys.path -- for example, one could simply add each of those git repositories' local root Python source code directory to PYTHONPATH. Operationally, however, this package uses symbolic links to those git repositories' local root Python source code directories (or full copies of the same) in the source/ directory.
@@ -30,7 +30,7 @@ The location of 'PREFIRE_tools' depends on the value of the user's PYTHONPATH an
 
 ### Each job (executing this science algorithm package) is configured via information contained within environment variables.
 
-### To specify that numpy, scipy, et cetera used by this algorithm should not use more than one thread or process, the below environment variables are expected to be set:
+### To specify that numpy, pandas, et cetera used by this algorithm should not use more than one thread or process, the below environment variables are expected to be set:
 
 ```
 MKL_NUM_THREADS=1

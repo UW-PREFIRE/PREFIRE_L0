@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## IMPORTANT: Only run this script from the directory it resides in, i.e. with
-##             ./run_m0.sh    OR    bash run_m0.sh
+##             ./run_m1.sh    OR    bash run_m1.sh
 
 ##===========================================================================##
 ## This script contains hardwired information necessary for this algorithm's
@@ -11,7 +11,7 @@
 ##     repository (exceptions include adding a new environment var for
 ##     algorithm config) **
 ##
-## ++ Instead, make a LOCAL copy of this script (e.g., my_run_m0.sh; do not
+## ++ Instead, make a LOCAL copy of this script (e.g., my_run_m1.sh; do not
 ##     push that local copy to the primary git repository either) and modify
 ##     and run that for general algorithm testing and development.
 ##===========================================================================##
@@ -62,9 +62,11 @@ non_SDPS_hostname="longwave";
 
 L0_dir="${base_dir}/inputs";
 
-L0_pld_cfg_str1="${L0_dir}/prefire_01_payload_tlm_2024_10_17_04_33_04.bin,${L0_dir}/prefire_01_payload_tlm_2024_10_17_17_39_04.bin,${L0_dir}/prefire_01_payload_tlm_2024_10_17_16_16_03.bin,${L0_dir}/prefire_01_payload_tlm_2024_10_18_08_53_54.bin,${L0_dir}/prefire_01_payload_tlm_2024_10_18_10_16_36.bin,${L0_dir}/prefire_01_payload_tlm_2024_10_18_19_36_09.bin||2024-10-17T00:00:00.000->2024-10-17T23:59:59.999";
-L0_pld_cfg_str2="${L0_dir}/prefire_01_payload_tlm_2024_10_17_04_33_04.bin||USE_DETECTED_BOUNDS";
-L0_pld_cfg_str3="${L0_dir}/prefire_02_payload_tlm_2024_10_09_08_42_44.bin,${L0_dir}/prefire_02_payload_tlm_2024_10_09_20_26_38.bin,${L0_dir}/prefire_02_payload_tlm_2024_10_10_07_01_04.bin,${L0_dir}/prefire_02_payload_tlm_2024_10_10_08_37_32.bin,${L0_dir}/prefire_02_payload_tlm_2024_10_11_08_18_57.bin||2024-10-09T00:00:00.000->2024-10-09T23:59:59.999";
+L0_pld_cfg_str1="${L0_dir}/prefire_01_payload_tlm_2024_10_17_17_39_04.bin";
+L0_pld_cfg_str2="${L0_dir}/prefire_01_payload_tlm_20241017000000_20241017235959_20241210183209.bin";
+
+L0_pld_cfg_str3="${L0_dir}/prefire_02_payload_tlm_2024_10_10_08_37_32.bin";
+L0_pld_cfg_str4="${L0_dir}/prefire_02_payload_tlm_20241009000000_20241009235959_20241210183215.bin";
 
 
 # Specify that numpy, scipy, et cetera should not use more than one thread or
@@ -84,17 +86,20 @@ this_top_dir="$(absfpath "${base_dir}/..")";
 PACKAGE_TOP_DIR="${this_top_dir}";
 ANCILLARY_DATA_DIR="${this_top_dir}/dist/ancillary";
 
-OUTPUT_DIR="${base_dir}/outputs/m0";
+OUTPUT_DIR="${base_dir}/outputs/m1";
 
-PROC_MODE=0;
+PROC_MODE=1;
 
-export PACKAGE_TOP_DIR ANCILLARY_DATA_DIR OUTPUT_DIR PROC_MODE;
+PRODUCT_FULLVER="P01_R00";  # Stored in global attributes, not filename
+ORBSIM_VERSION=" ";  # Set to " " if this is not part of an orbital sim
+SRF_NEDR_VERSION=" ";  # Set to " " if this is not part of an orbital sim
 
-#= Processing mode #0: Produce a curated 'raw L0 payload telemetry' file for
-#                       the specified UTC-datetime range, given one or more raw
-#                       L0-payload per-downlink files (possibly anachronistic).
-#                       These inputs are all specified within the (string)
-#                       value of TGT_L0_PLD_FPATHS_DTRANGE
+export PACKAGE_TOP_DIR ANCILLARY_DATA_DIR;
+export OUTPUT_DIR PROC_MODE PRODUCT_FULLVER ORBSIM_VERSION SRF_NEDR_VERSION;
+
+#= Processing mode #1: Process a single (per-downlink or curated)
+#                      'raw L0 payload telemetry' file, producing a NetCDF
+#                      'L0-payload' file (data volume is less than raw input).
 
 # Check if output file directory exists; if not, bail:
 tmpdir="${OUTPUT_DIR}";
@@ -115,11 +120,11 @@ if [ ! -f "${this_top_dir}/dist/for_SDPS_delivery.txt" ]; then
    python "${this_top_dir}/dist/determine_prdgit.py";
 fi
 
-for cfg_str in ${L0_pld_cfg_str1} ${L0_pld_cfg_str2} ${L0_pld_cfg_str3}
+for cfg_str in ${L0_pld_cfg_str1} ${L0_pld_cfg_str2} ${L0_pld_cfg_str3} ${L0_pld_cfg_str4}
 do
-   TGT_L0_PLD_FPATHS_DTRANGE=${cfg_str};
+   TGT_L0_PAYLOAD_FPATH=${cfg_str};
 
-   export TGT_L0_PLD_FPATHS_DTRANGE;
+   export TGT_L0_PAYLOAD_FPATH;
 
    # Execute primary driver:
    if [ "x$1" = "x-i" ]; then

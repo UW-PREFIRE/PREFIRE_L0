@@ -41,21 +41,43 @@ this_top_dir="$(absfpath "${base_dir}/..")";
 test_path="${this_top_dir}/test";
 cd "$test_path";
 
-# Create test/inputs/ if it does not exist:
+# Run script to refresh test input:
+./run.sh;
+
+# Directory (or a symlink of the same name) 'test/inputs/' must already exist
+#  (and contain raw L0 telemetry files) for this package:
 inputs_path="$test_path"/inputs;
-   # Must already exist (and contain raw L0 telemetry files) for this package
-#if [ ! -d "$inputs_path" ]; then
-#   mkdir "$inputs_path";
-#fi
 
 # Remove old curated payload tlm output files, create new ones, rename the
-#  relevant new output files to what is expected by run_*.sh, and then copy
+#  relevant new output files to what is expected by run_m1.sh, and then copy
 #  them to inputs/:
 mnk="m0";
 outputs_path="$test_path"/outputs/$mnk;
 rm -rf "$outputs_path";
 mkdir -p "$outputs_path";
 ./run_$mnk.sh;
-cp "$outputs_path"/prefire_02_payload_tlm_20240706000000_20240706235959_*.bin "$inputs_path"/prefire_02_payload_tlm_20240706000000_20240706235959_20240730205430.bin;
+cp "$outputs_path"/prefire_01_payload_tlm_20241017*.bin "$inputs_path"/prefire_01_payload_tlm_20241017000000_20241017235959_20241210183209.bin;
+cp "$outputs_path"/prefire_02_payload_tlm_20241009*.bin "$inputs_path"/prefire_02_payload_tlm_20241009000000_20241009235959_20241210183215.bin;
+
+# Remove old payload tlm output files, create new ones:
+mnk="m1";
+outputs_path="$test_path"/outputs/$mnk;
+rm -rf "$outputs_path";
+mkdir -p "$outputs_path";
+./run_$mnk.sh;
+
+# Remove old bus tlm output files, create new ones:
+mnk="m2";
+outputs_path="$test_path"/outputs/$mnk;
+rm -rf "$outputs_path";
+mkdir -p "$outputs_path";
+./run_$mnk.sh;
+
+# Remove old orbit reconstruction output files, create new ones:
+mnk="m5";
+outputs_path="$test_path"/outputs/$mnk;
+rm -rf "$outputs_path";
+mkdir -p "$outputs_path";
+./run_$mnk.sh;
 
 echo "Finished refreshing test input.";

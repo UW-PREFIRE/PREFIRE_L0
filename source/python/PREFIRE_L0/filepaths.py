@@ -10,7 +10,7 @@ package_ancillary_data_dir = os.path.abspath(os.path.join(package_dir,
 
 scipkg_version_fpath = os.path.join(package_dir, "VERSION.txt")
 
-_possible_modes = [0, 1, 2, 51, 52]
+_possible_modes = [0, 1, 2, 5, 51, 52, 61]
 
 tmp_fpaths = [os.path.join(package_dir, "dist",
              "prdgit_version_m{}.txt".format(str(x))) for x in _possible_modes]

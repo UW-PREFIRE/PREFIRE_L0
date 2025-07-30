@@ -19,10 +19,11 @@ import importlib
 
 
 # *This* package must be first in the tuple of packages below:
-Pypackages_to_query = ("PREFIRE_L0", "PREFIRE_tools")
+Pypackages_to_query = ("PREFIRE_L0", "PREFIRE_PRD_GEN", "PREFIRE_tools")
 
-product_monikers = {1:"0P-TPLD", 2:"0P-TBUS",
-                    0:"0C-TPLD", 51:"0S-IPLD", 52:"0S-TBUS"}
+product_monikers = {1:"0P-TPLD", 2:"0E-TBUS",
+                    0:"0C-TPLD", 5:"0C-RORB", 51:"0S-IPLD", 52:"0S-TBUS",
+                    61:"0A-TPLD"}
 
 
 #--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ def main(anchor_path, proc_mode):
             # Read in algorithm moniker:
             with open(pkg[-1].filepaths.scipkg_version_fpath, 'r') as in_f:
                 line = in_f.readline()
-                pg_pieces.append(line.split()[0])
+                pg_pieces.append(line.strip())
 
             pkg_dir = pkg[-1].filepaths.package_dir
         else:

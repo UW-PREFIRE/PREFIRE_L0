@@ -1,0 +1,156 @@
+{
+"_JSON_COMMENTS_": {
+  "purpose": {"to_describe": "the metadata and form of a NetCDF-format file"},
+  
+  "abbrev_widget_len": {
+       "units": "cubits",
+       "long_name": "abbreviated widget length",
+       "description": "an arbitrary example of a data variable",
+       "C_dimensions": ["atrack", "xtrack"],
+       "F_dimensions": ["xtrack", "atrack"],
+       "np_dtype": "float32", "fill_value": -9.999e3,
+       "compression": [4, true] },
+
+  "C_dimensions_are": { "for": "Python, C, C++, etc." },
+  "F_dimensions_are": { "for": "Fortran, MatLab, IDL, etc." },
+  "can_have_either": { "or_both_types": "of dimension definition" },
+  "for_an_unlimited_dimension": { "add_a_prefix_eg": "!U!time" },
+
+  "Global_Attributes": { "group": "can be empty or omitted" },
+  "xxxxx_Group_Attributes": { "group": "can omit/empty, xxxxx is group name" },
+  "eg_value_known_globalgroup_att": { "value": 3.14159 },
+  "eg_value_pending_globalgroup_att": { "value": "!to_be_set!" } 
+},
+
+
+"Global_Attributes": {
+    "Format": {"value": "netCDF-4"},
+    "summary": {"value": "This file contains time-continuous reconstructed estimates of orbit state vectors and related information for a PREFIRE CubeSat, is a required input for Level-1A processing, and will not be archived at a DAAC."},
+    "full_versionID": {"value": "!to_be_set!"},
+    "archival_versionID": {"value": " "},
+    "granule_type": {"value": "!to_be_set!"},
+    "granule_ID": {"value": "!to_be_set!"},
+    "provenance": {"value": "!to_be_set!"},
+    "file_name": {"value": "!to_be_set!"},
+    "input_product_files": {"value": "!to_be_set!"},
+    "processing_algorithmID": {"value": "!to_be_set!"},
+    "processing_level": {"value": "0"},
+    "UTC_of_file_creation": {"value": "!to_be_set!"},
+    "spacecraft_ID": {"value": "!to_be_set!"},
+    "sensor_ID": {"value": " "},
+    "ctime_coverage_start_s": {"value": "!to_be_set!"},
+    "ctime_coverage_end_s": {"value": "!to_be_set!"},
+    "UTC_coverage_start": {"value": "!to_be_set!"},
+    "UTC_coverage_end": {"value": "!to_be_set!"},
+    "additional_file_description": {"value": " "},
+    "netCDF_lib_version": {"value": "!to_be_set!"},
+    "orbit_sim_version": {"value": "!to_be_set!"},
+    "SRF_NEdR_version": {"value": " "},
+    "is_this_a_final_product_file": {"value": "no"}
+},
+
+
+"Orbit_L0_Data":{
+    "UTC_datetime_repr": {
+             "long_name": "UTC datetime representation",
+             "description": "UTC datetime of bus telemetry entry, represented as an integer",
+             "value_meaning": "YYYYMMDDhhmmssxxx, UTC date and time of bus telemetry entry, xxx=milliseconds)",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "int64", "fill_value": -9999,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "ctime": {
+             "units": "seconds since 2000-01-01T00:00:00Z",
+             "long_name": "continuous_time",
+             "description": "at each bus telemetry entry; similar to TAI, and referenced to the epoch 2000-01-01T00:00:00 UTC",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "SC_in_Earth_umbra": {
+             "long_name": "spacecraft is in Earth umbra",
+             "description": "is the spacecraft currently in the Earth umbra?",
+             "flag_values": [0, 1],
+             "flag_meanings": "no, yes",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "int8", "fill_value": -99,
+             "compression": [4, true] },
+    "position_wrt_ECI_1": {
+             "units": "km",
+             "long_name": "position component 1 with respect to ECI frame",
+             "description": "orbit position component 1 (x), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999999e6,
+             "compression": [4, true] },
+    "position_wrt_ECI_2": {
+             "units": "km",
+             "long_name": "position component 2 with respect to ECI frame",
+             "description": "orbit position component 2 (y), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999999e6,
+             "compression": [4, true] },
+    "position_wrt_ECI_3": {
+             "units": "km",
+             "long_name": "position component 3 with respect to ECI frame",
+             "description": "orbit position component 3 (z), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999999e6,
+             "compression": [4, true] },
+    "velocity_wrt_ECI_1": {
+             "units": "km s-1",
+             "long_name": "velocity component 1 with respect to ECI frame",
+             "description": "orbit velocity component 1 (u), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "velocity_wrt_ECI_2": {
+             "units": "km s-1",
+             "long_name": "velocity component 2 with respect to ECI frame",
+             "description": "orbit velocity component 2 (v), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "velocity_wrt_ECI_3": {
+             "units": "km s-1",
+             "long_name": "velocity component 3 with respect to ECI frame",
+             "description": "orbit velocity component 3 (w), reported in the ECI (J2000) frame",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "ref_altitude": {
+             "units": "km",
+             "long_name": "altitude (reference only)",
+             "description": "approximate spacecraft altitude with respect to the WGS84 ellipsoid (reference only)",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float32", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "ref_latitude": {
+             "units": "degrees_north",
+             "long_name": "latitude (reference only)",
+             "description": "approximate geodetic latitude (reference only)",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float32", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "ref_longitude": {
+             "units": "degrees_east",
+             "long_name": "longitude (reference only)",
+             "description": "approximate geodetic longitude (reference only)",
+             "C_dimensions": ["atrack"],
+             "np_dtype": "float32", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "granule_edge_ctime": {
+             "units": "seconds since 2000-01-01T00:00:00Z",
+             "long_name": "granule edge continuous_time",
+             "description": "similar to TAI, referenced to the epoch 2000-01-01T00:00:00 UTC, and valid at a granule edge",
+             "C_dimensions": ["gr_edge"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "granule_ID": {
+             "long_name": "granule ID",
+             "description": "for each granule (defined as starting at each granule edge ctime), an identification number",
+             "C_dimensions": ["gr_edge"],
+             "np_dtype": "int32", "fill_value": -9999,
+             "compression": [4, true] }
+}
+}
